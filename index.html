@@ -1,14 +1,15 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-int main() {
+int main(void) {
     FILE *file = fopen("index.html", "w");
 
-    if (file == NULL) {
-        printf("Erro ao criar o arquivo HTML.\n");
-        return 1;
+    if (!file) {
+        perror("Erro ao criar index.html");
+        return EXIT_FAILURE;
     }
 
-    fprintf(file,
+    fputs(
         "<!DOCTYPE html>\n"
         "<html lang=\"pt-BR\">\n"
         "<head>\n"
@@ -23,35 +24,37 @@ int main() {
         "      justify-content: center;\n"
         "      align-items: center;\n"
         "      background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);\n"
-        "      font-family: 'Segoe UI', sans-serif;\n"
-        "      color: white;\n"
+        "      font-family: Arial, Helvetica, sans-serif;\n"
+        "      color: #ffffff;\n"
         "      text-align: center;\n"
         "    }\n"
         "    h1 {\n"
-        "      font-size: 4rem;\n"
+        "      font-size: 3.5rem;\n"
+        "      margin-bottom: 10px;\n"
         "      animation: glow 2s infinite alternate;\n"
         "    }\n"
         "    p {\n"
-        "      font-size: 1.5rem;\n"
+        "      font-size: 1.4rem;\n"
         "      opacity: 0.9;\n"
         "    }\n"
         "    @keyframes glow {\n"
-        "      from { text-shadow: 0 0 10px #fff; }\n"
-        "      to { text-shadow: 0 0 30px #ffd700; }\n"
+        "      from { text-shadow: 0 0 10px #ffffff; }\n"
+        "      to   { text-shadow: 0 0 25px #ffd700; }\n"
         "    }\n"
         "  </style>\n"
         "</head>\n"
         "<body>\n"
         "  <div>\n"
-        "    <h1>🎆 Feliz Ano Novo! 🎆</h1>\n"
-        "    <p>Que este ano traga novos começos, coragem e conquistas.</p>\n"
+        "    <h1>Feliz Ano Novo!</h1>\n"
+        "    <p>Que este ano traga novas conquistas e bons caminhos.</p>\n"
         "  </div>\n"
         "</body>\n"
-        "</html>\n"
+        "</html>\n",
+        file
     );
 
     fclose(file);
 
-    printf("index.html criado com sucesso!\n");
-    return 0;
+    puts("Arquivo index.html criado com sucesso!");
+    return EXIT_SUCCESS;
 }
