@@ -1,0 +1,57 @@
+#include <stdio.h>
+
+int main() {
+    FILE *file = fopen("index.html", "w");
+
+    if (file == NULL) {
+        printf("Erro ao criar o arquivo HTML.\n");
+        return 1;
+    }
+
+    fprintf(file,
+        "<!DOCTYPE html>\n"
+        "<html lang=\"pt-BR\">\n"
+        "<head>\n"
+        "  <meta charset=\"UTF-8\">\n"
+        "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
+        "  <title>Feliz Ano Novo</title>\n"
+        "  <style>\n"
+        "    body {\n"
+        "      margin: 0;\n"
+        "      height: 100vh;\n"
+        "      display: flex;\n"
+        "      justify-content: center;\n"
+        "      align-items: center;\n"
+        "      background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);\n"
+        "      font-family: 'Segoe UI', sans-serif;\n"
+        "      color: white;\n"
+        "      text-align: center;\n"
+        "    }\n"
+        "    h1 {\n"
+        "      font-size: 4rem;\n"
+        "      animation: glow 2s infinite alternate;\n"
+        "    }\n"
+        "    p {\n"
+        "      font-size: 1.5rem;\n"
+        "      opacity: 0.9;\n"
+        "    }\n"
+        "    @keyframes glow {\n"
+        "      from { text-shadow: 0 0 10px #fff; }\n"
+        "      to { text-shadow: 0 0 30px #ffd700; }\n"
+        "    }\n"
+        "  </style>\n"
+        "</head>\n"
+        "<body>\n"
+        "  <div>\n"
+        "    <h1>🎆 Feliz Ano Novo! 🎆</h1>\n"
+        "    <p>Que este ano traga novos começos, coragem e conquistas.</p>\n"
+        "  </div>\n"
+        "</body>\n"
+        "</html>\n"
+    );
+
+    fclose(file);
+
+    printf("index.html criado com sucesso!\n");
+    return 0;
+}
